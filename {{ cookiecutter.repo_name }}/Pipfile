@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+yapf = "*"
+flake8 = "*"
+
+[packages]
+django = "==2.2.7"
+djangorestframework = "*"
+djoser = "*"
+djangorestframework-simplejwt = "*"
+django-cors-headers = "*"
+django-environ = "*"
+django-heroku = "*"
+gunicorn = "*"
+
+[requires]
+python_version = "3.7"
