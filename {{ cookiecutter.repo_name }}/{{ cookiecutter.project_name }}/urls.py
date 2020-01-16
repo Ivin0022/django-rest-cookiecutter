@@ -18,13 +18,21 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+# django rest framework
+from rest_framework.routers import DefaultRouter
+
+# djoser
+from djoser.views import UserViewSet
+
+router = DefaultRouter()
+router.register('users', UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('djoser.urls')),
+    path('api/', include(router.urls)),
+    path('api/', include('djoser.urls.jwt')),
     path('api/', include('rest_framework.urls')),
 ]
-
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
