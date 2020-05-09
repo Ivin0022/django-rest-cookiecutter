@@ -8,7 +8,7 @@ yapf = "*"
 flake8 = "*"
 
 [packages]
-django = "==2.2.7"
+django = "==2.2.10"
 djangorestframework = "*"
 djoser = "*"
 djangorestframework-simplejwt = "*"
