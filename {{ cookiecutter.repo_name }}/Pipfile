@@ -21,3 +21,9 @@ ipython = "*"
 
 [requires]
 python_version = "3.7"
+
+[scripts]
+superuser = "python manage.py createsuperuser"
+make = "python manage.py makemigrations"
+migrate = "python manage.py migrate"
+server = "python manage.py runserver"
