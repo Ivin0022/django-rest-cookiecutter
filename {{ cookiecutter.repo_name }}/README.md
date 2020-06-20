@@ -1,1 +1,1 @@
-###{{ cookiecutter.project_name }}
+###config
