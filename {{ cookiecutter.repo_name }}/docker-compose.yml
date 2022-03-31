@@ -1,0 +1,66 @@
+version: '3.7'
+
+volumes:
+  postgres_data: {}
+  static_volume: {}
+
+networks:
+  nginx_network:
+    driver: bridge
+
+  database_network:
+    # <-- add the bridge
+    driver: bridge
+
+services:
+  server:
+    &server
+    restart: always
+    build:
+      context: .
+      dockerfile: ./compose/server/Dockerfile
+      args:
+        workdir: /usr/src/app/
+        port: 8000
+    links:
+      - "db:database"
+    volumes:
+      - ./src:/usr/src/app
+      - static_volume:/usr/src/app/static/
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@database:5432/postgres
+      - CACHE_URL=redis://redis/0
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env
+    networks:
+      - nginx_network
+      - database_network # <-- connect to the bridge
+    depends_on:
+      - db
+    command: /start.sh
+
+  db:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - database_network # <-- connect to the bridge
+
+  nginx:
+    build: ./compose/nginx
+    ports:
+      - 80:80
+    links:
+      - "server:server"
+    volumes:
+      - static_volume:/usr/src/app/static/
+    networks:
+      - nginx_network
+    depends_on:
+      - server

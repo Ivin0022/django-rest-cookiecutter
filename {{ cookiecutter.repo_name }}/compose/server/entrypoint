@@ -1,0 +1,38 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+postgres_ready() {
+    python3 <<END
+import sys
+
+import psycopg2
+
+import environ
+
+db = environ.Env().db() 
+
+try:
+    psycopg2.connect(
+        dbname=db["NAME"],
+        user=db["USER"],
+        password=db["PASSWORD"],
+        host=db["HOST"],
+        port=db["PORT"],
+    )
+except psycopg2.OperationalError:
+    sys.exit(-1)
+sys.exit(0)
+
+END
+}
+until postgres_ready; do
+    echo >&2 'Waiting for PostgreSQL to become available...'
+    sleep 1
+done
+
+echo >&2 'PostgreSQL is available'
+
+exec "$@"

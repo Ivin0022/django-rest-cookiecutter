@@ -3,4 +3,7 @@ from django.db import models
 
 
 class User(AbstractUser):
-    pass
+
+    class Meta:
+        verbose_name = 'user'
+        verbose_name_plural = 'users'

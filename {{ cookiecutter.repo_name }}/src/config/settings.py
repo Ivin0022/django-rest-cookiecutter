@@ -97,6 +97,8 @@ else:
     # like psql://user:pass@127.0.0.1:8458/db
     DATABASES = {'default': env.db()}
 
+AUTH_USER_MODEL = 'users.User'
+
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
