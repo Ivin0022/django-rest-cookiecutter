@@ -1,29 +1,26 @@
 [[source]]
-name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "==4.0.3"
+djangorestframework = "*"
+django-cors-headers = "*"
+django-environ = "*"
+django-extensions = "*"
+gunicorn = "*"
+ipython = "*"
 
 [dev-packages]
 yapf = "*"
 flake8 = "*"
 
-[packages]
-django = "==2.2.13"
-djangorestframework = "*"
-djoser = "*"
-djangorestframework-simplejwt = "*"
-django-cors-headers = "*"
-django-environ = "*"
-django-heroku = "*"
-gunicorn = "*"
-django-extensions = "*"
-ipython = "*"
-
 [requires]
-python_version = "3.7"
+python_version = "3.9"
 
 [scripts]
-superuser = "python manage.py createsuperuser"
-make = "python manage.py makemigrations"
-migrate = "python manage.py migrate"
-server = "python manage.py runserver"
+superuser = "python ./src/manage.py createsuperuser"
+make = "python ./src/manage.py makemigrations"
+migrate = "python ./src/manage.py migrate"
+server = "python ./src/manage.py runserver"
