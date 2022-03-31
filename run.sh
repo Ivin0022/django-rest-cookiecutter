@@ -2,4 +2,5 @@
 
 cd example/
 rm -rf ./*
-cookiecutter gh:Ivin0022/django-rest-cookiecutter
+cookiecutter $(pwd)/../
+# cookiecutter gh:Ivin0022/django-rest-cookiecutter

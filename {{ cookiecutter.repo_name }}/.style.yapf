@@ -2,7 +2,7 @@
 based_on_style=pep8
 column_limit=119
 align_closing_bracket_with_visual_indent=False
-allow_split_before_dict_value = False
+allow_split_before_dict_value=False
 dedent_closing_brackets=True
 space_between_ending_comma_and_closing_bracket=False
 SPACES_AROUND_TUPLE_DELIMITERS=True
