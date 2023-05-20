@@ -2,5 +2,5 @@
 
 ## install
 - `pip install cookiecutter`
-- `cookiecutter https://github.com/audreyr/cookiecutter-pypackage.git --checkout docker`
+- `cookiecutter https://github.com/Ivin0022/django-rest-cookiecutter.git --checkout docker`
   
